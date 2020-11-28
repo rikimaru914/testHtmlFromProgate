@@ -1,89 +1,234 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>Progate</title>
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <title>FlexboxLesson</title>
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <header>
-      <div class="container">
-        <div class="header-left">
-          <img class="logo" src="https://prog-8.com/images/html/advanced/main_logo.png">
+
+<!-- ***************************************
+FloxBoxを使った３カラムレイアウト(marginを付ける)
+*************************************** -->
+    <div class="lesson-container">
+      <section class="lesson-section">
+        <h1>FloxBoxを使った３カラムレイアウト(marginを使わず余白を作る)</h1>
+        <div class="content">
+          <h2>最初の状態</h2>
+          <img src="img/start.png" alt="">
         </div>
-        <div class="header-right">
-          <a href="#" class="login">ログイン</a>
-        </div>
-      </div>
-    </header>
-    <div class="top-wrapper">
-      <div class="container">
-        <h1>LEARN TO CODE.</h1>
-        <h1>LEARN TO BE CREATIVE.</h1>
-        <p>Progateはオンラインプログラミング学習サービスです。</p>
-        <p>初心者にもやさしいスライドとレッスンで、Webサービスを作りながらプログラミングを学んでいきましょう。</p>
-        <p>レッツトライ！がんばろう</p>
-        <div class="btn-wrapper">
-          <a href="#" class="btn signup">新規登録はこちら</a>
-          <p>or sign up with</p>
-          <a href="#" class="btn facebook"><span class="fa fa-facebook"></span>Facebookで登録</a>
-          <a href="#" class="btn twitter"><span class="fa fa-twitter"></span>Twitterで登録</a>
-        </div>
-      </div>
-    </div>
-    <div class="lesson-wrapper">
-      <div class="container">
-        <div class="heading">
-          <h2>Learn Where to Get Started!</h2>
-        </div>
-        <div class="lessons">
-          <div class="lesson">
-            <div class="lesson-icon">
-              <img src="https://prog-8.com/images/html/advanced/html.png">
-              <p>HTML & CSS</p>
-            </div>
-            <p class="txt-contents">Webページの作成に使用される言語です。HTMLとCSSを組み合わせることで、静的なページを作り上げることができます。</p>
+<!-- ************************************* -->
+        <div class="lesson-content">
+          <h2>カラムの親要素を<code>display:flex</code>にする</h2>
+          <div class="code-content">
+            <code>
+    <pre>
+      /* カラムの親要素 */
+      .call-outs-container {
+        max-width: 1400px;
+        margin: 40px auto 20px auto;
+        display: flex;
+      }
+
+      /* カラムの要素 */
+      .call-out {
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+    </pre>
+            </code>
           </div>
-          <div class="lesson">
-            <div class="lesson-icon">
-              <img src="https://prog-8.com/images/html/advanced/jQuery.png">
-              <p>jQuery</p>
-            </div>
-            <p class="txt-contents">素敵な動きを手軽に実装できるJavaScriptライブラリです。 アニメーション効果をつけたり、Ajax（エイジャックス）を使って外部ファイルを読み込んだりと色々なことができます。</p>
+          <img src="img/displayFlex.png" alt="">
+          <p class="imgProblem">横には並んだが、文字数が多いと幅が広くなってしまう。</p>
+        </div><!-- lesson-content -->
+
+<!-- ******************************** -->
+        <div class="lesson-content">
+          <h2>カラムの要素を全て<code>flex:1</code>にすると、全てのカラムの幅が揃う</h2>
+          <div class="code-content">
+            <code>
+    <pre>
+  /* カラムの親要素 */
+  .call-outs-container {
+    max-width: 1400px;
+    margin: 40px auto 20px auto;
+    display: flex;
+  }
+
+  /* カラムの要素 */
+  .call-out {
+    padding: 20px;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+    </pre>
+            </code>
           </div>
-          <div class="lesson">
-            <div class="lesson-icon">
-              <img src="https://prog-8.com/images/html/advanced/ruby.png">
-              <p>Ruby</p>
-            </div>
-            <p class="txt-contents">オープンソースの動的なプログラミング言語で、 シンプルさと高い生産性を備えています。大きなWebアプリケーションから小さな日用ツールまで、さまざまなソフトウェアを作ることができます。</p>
+          <img src="img/flex1.png" alt="">
+          <p class="imgProblem">全てのカラムの幅が揃う</p>
+          <p class="imgProblem">このカラムに<code>margin</code>を付けたい。</p>
+        </div><!-- lesson-content -->
+
+<!-- ******************************** -->
+        <div class="lesson-content">
+          <h2>各カラムに<code>margin-right</code>とするが、最後のカラムだけは<code>margin-right</code>を付けない。<br>
+          右端に余計な隙間ができてしまうから</h2>
+          <div class="code-content">
+            <code>
+    <pre>
+    /* カラムの親要素 */
+    .call-outs-container {
+      max-width: 1400px;
+      margin: 40px auto 20px auto;
+      display: flex;
+    }
+
+    /* カラムの要素 */
+    .call-out {
+      padding: 20px;
+      margin-bottom: 20px;
+      flex: 1;
+      margin-right: 40px;
+    }
+
+    .call-out:last-child {
+      margin-right: 0;
+    }
+    </pre>
+            </code>
           </div>
-          <div class="lesson">
-            <div class="lesson-icon">
-              <img src="https://prog-8.com/images/html/advanced/php.png">
-              <p>PHP</p>
-            </div>
-            <p class="txt-contents">HTMLだけではページの内容を変えることはできません。PHPはHTMLにプログラムを埋め込み、それを可能にします。</p>
+          <img src="img/margin-right.png" alt="">
+          <p class="imgProblem">カラムの間に余白ができた</p>
+        </div><!-- lesson-content -->
+
+<!-- ******************************** -->
+        <div class="lesson-content">
+          <h2><code>margin</code>を使わずに余白を作ろう！！</h2>
+          <h2>各カラムに<code>width: 30%</code>とし、余白10%とする。<code>box-sizing:border-box;</code>と<code>box-sizing:content-box</code>の違い</h2>
+          <div class="code-content">
+            <code>
+    <pre>
+  /* カラムの親要素 */
+  .call-outs-container {
+    max-width: 1400px;
+    margin: 40px auto 20px auto;
+    display: flex;
+    border: 2px solid black;
+  }
+
+  /* カラムの要素 */
+  .call-out {
+    padding: 20px;
+    box-sizing:border-box;
+    margin-bottom: 20px;
+    width: 30%;
+  }
+    </pre>
+            </code>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="message-wrapper">
-      <div class="container">
-        <div class="heading">
-          <h2>さぁ、あなたもProgateでプログラミングを学んでみませんか?</h2>
-          <h3>Let's learn to code, learn to be creative!</h3>
-        </div>
-        <span class="btn message">さっそく開発する</span>
-      </div>
+          <img src="img/border-box.png" alt="">
+          <p class="imgProblem"><code>box-sizing:border-box;</code>は、1カラム=30%=文章+padding20pxなので、右端に10%の余白ができる。<br>
+          padding分、内側が狭まるイメージ</p>
+<hr>
+          <img src="img/content-box.png" alt="">
+          <p class="imgProblem"><code>box-sizing:content-box;</code>は、 1カラム=「30%(文章)＋padding20px」なので、幅が広がり、余白がほとんどない。<br>
+          padding分、外側に広がるイメージ</p>
+        </div><!-- lesson-content -->
+
+        <!-- ******************************** -->
+          <div class="lesson-content">
+            <h2>親要素に<code>justify-content:space-between;</code>として、10%分の余白をカラムの間に作ろう</h2>
+            <div class="code-content">
+                    <code>
+    <pre>
+    /* カラムの親要素 */
+    .call-outs-container {
+      max-width: 1400px;
+      margin: 40px auto 20px auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* カラムの要素 */
+    .call-out {
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 30%;
+    }
+
+    </pre>
+            </code>
+          </div>
+          <img src="img/space-between.png" alt="">
+          <p class="imgProblem">10%分の余白がカラムの間にできた</p>
+        </div><!-- lesson-content -->
+
+        <!-- ******************************** -->
+        <div class="lesson-content">
+          <h2>子要素の<code>flex-basis:30%;</code>と<code>width:30%;</code>とした時の違い<br>
+          responsive対応をするときに挙動が異なる。</h2>
+
+          <div class="two-columns">
+            <div class="left-column">
+              <h3><code>flex-basis:30%;</code></h3>
+              <img src="img/flex-basis30%.png" alt="">
+              <p class="imgProblem">カラムが横幅いっぱいになる</p>
+              <div class="code-content">
+                <code>
+  <pre>
+    /* カラムの親要素 */
+    .call-outs-container {
+      max-width: 1400px;
+      margin: 40px auto 20px auto;
+      border: 2px solid black;
+    }
+
+    /* カラムの要素 */
+    .call-out {
+      padding: 20px;
+      box-sizing:border-box;
+      margin-bottom: 20px;
+      flex-basis: 30%;
+    }
+
+    @media (min-width: 900px) {
+      .call-outs-container {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  </pre>
+                </code>
+              </div>
+            </div> <!-- left-column -->
+
+            <div class="right-column">
+              <h3><code>width:30%;</code></h3>
+              <img src="img/width30%.png" alt="">
+              <p class="imgProblem">カラムが親要素の幅の30%</p>
+              <div class="code-content">
+                <code>
+  <pre>
+    /* カラムの要素 */
+    .call-out {
+      box-sizing: border-box;
+      padding: 20px;
+      margin-bottom: 20px;
+      width: 30%;
+    }
+    ※他の部分は、flex-basisと同じ
+  </pre>
+                </code>
+              </div>
+            </div> <!-- right-column -->
+          </div><!-- two-columns -->
+        </div><!-- lesson-content -->
+
+
+      </section>
     </div>
     <footer>
-      <div class="container">
-        <img src="https://prog-8.com/images/html/advanced/footer_logo.png">
-        <p>Learn to code, learn to be creative.</p>
-      </div>
+      <p>Flexbox Lesson</p>
     </footer>
   </body>
 </html>
